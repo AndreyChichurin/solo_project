@@ -5,7 +5,7 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('solo-project:server');
+var debug = require('debug')('podgotovaka:server');
 var http = require('http');
 
 /**

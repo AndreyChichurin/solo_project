@@ -6,3 +6,11 @@ body {
 a {
   color: #00B7FF;
 }
+
+.width-500 {
+  width: 500px;
+}
+
+.top-50{
+  margin-top: 50px;
+}

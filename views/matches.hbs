@@ -1,0 +1,43 @@
+<div class="container">
+  <br>
+  <div class="row m-t-1">
+    {{!-- <div class="col-md-12">
+      <a href="/">Home</a>
+    </div> --}}
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-inverse">
+        <thead>
+          <tr>
+            <th>Match ID</th>
+            <th>Start Time</th>
+            <th>Home Team</th>
+            <th>Away Team</th>
+            <th>Winner</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each matches}}
+          <tr>
+            <td>{{dbid}}</td>
+            {{#if  start}}
+            <td>{{start}}</td>
+            {{else}}
+            <td>Time not finalized</td>
+            {{/if}}
+            <td>{{homeTeam.name}}</td>
+            <td>{{awayTeam.name}}</td>
+            {{#if  outcome}}
+            <td>{{outcome.winner}}</td>
+            {{else}}
+            <td>Match not finished</td>
+            {{/if}}
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

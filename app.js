@@ -1,17 +1,28 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const session = require('express-session');
+const FileStore = require('session-file-store')(session);
+const request = require("request");
+const moment = require("moment");
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const registrationRouter = require('./routes/registration');
+const logoutRouter = require('./routes/logout');
+const loginRouter = require('./routes/login');
+const matchesRouter = require('./routes/matches');
 
-var app = express();
+const app = express();
+
+// Подключаем mongoose.
+const mongoose = require("mongoose");
+mongoose.connect('mongodb://localhost:27017/podgotovka', { useNewUrlParser: true });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -19,8 +30,19 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+  secret: 'vasya',
+  store: new FileStore({}),
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: false }
+}))
+
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/registration', registrationRouter);
+app.use('/logout', logoutRouter);
+app.use('/login', loginRouter);
+app.use('/matches', matchesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
