@@ -1,21 +1,18 @@
 {
-  "name": "podgotovaka",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "npx nodemon --ignore './sessions' ./bin/www"
+  "name": "pet-shop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle.js",
+  "directories": {
+    "test": "test"
   },
-  "dependencies": {
-    "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
-    "express": "~4.16.1",
-    "express-session": "^1.17.0",
-    "hbs": "~4.0.4",
-    "http-errors": "~1.6.3",
-    "moment": "^2.24.0",
-    "mongoose": "^5.9.1",
-    "morgan": "~1.9.1",
-    "request": "^2.88.2",
-    "session-file-store": "^1.4.0"
+  "scripts": {
+    "dev": "lite-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "lite-server": "^2.3.0"
   }
 }
